@@ -1,3 +1,8 @@
-<h3>{{post.userId}}. {{post.title}}</h3>
-<p>{{post.body}}</p>
+<div>
+  {{post.title}}
+  <button (click)="navTo()">detail</button>
+</div>
 
+<!--создать переход на url /posts-->
+<!--при переходе  отобразить все title постов с jsonplaceholder.-->
+<!--У каждого поста есть кнопка, при клике на которую отображается детальная информация про пост-->
