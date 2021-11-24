@@ -9,10 +9,6 @@ import {ActiveteUserService} from "../../services/activete-user.service";
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
-  template:`<p>
-    {{user |stringType}}
-    <button (click)="navToDetails()" *ngIf="activeUser !== user.id">details</button>
-  </p>`
 })
 export class UserComponent {
 
