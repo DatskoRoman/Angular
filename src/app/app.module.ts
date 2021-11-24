@@ -15,7 +15,6 @@ import { UserComponent } from './components/user/user.component';
 import { UsersFormComponent } from './components/users-form/users-form.component';
 import { UsersComponent } from './components/users/users.component';
 import { StringTypePipe } from './pipes/string-type.pipe';
-import { PostResolveService } from './services/post-resolve.service';
 import { UserResolveService } from './services/user-resolve.service';
 
 @NgModule({
@@ -31,7 +30,7 @@ import { UserResolveService } from './services/user-resolve.service';
     CommentComponent,
     CommentsComponent,
     StringTypePipe
-    
+
   ],
   imports: [
     BrowserModule,
@@ -39,19 +38,20 @@ import { UserResolveService } from './services/user-resolve.service';
     RouterModule.forRoot([
       {path: 'users',
         component: UsersComponent,
-      },
-      {
-        path: 'users/:id',
-        component: UserInfoComponent,
-        resolve: { data: UserResolveService }
+        children: [
+          {
+            path: ':id',
+            component: UserInfoComponent,
+            resolve: { data: UserResolveService }
+          }
+        ]
       },
       {path: "posts",
         component: PostsComponent,
         children:[
           {
             path: ":id",
-            component: PostInfoComponent,
-            resolve: {data: PostResolveService}
+            component: PostInfoComponent
           },
         ]},
       { path: 'comments', component: CommentsComponent },

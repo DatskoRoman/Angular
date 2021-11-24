@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Post } from 'src/app/models/Post';
@@ -10,7 +10,7 @@ import {PostService} from "../../services/post.service";
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.css']
 })
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent{
 
   user: User
   postsUser: Post[] = [];
@@ -25,9 +25,6 @@ export class UserInfoComponent implements OnInit {
 
     this.activatedRoute.data.subscribe(value => this.user = value['data']);
 
-  }
-
-  ngOnInit(): void {
   }
 
 }
