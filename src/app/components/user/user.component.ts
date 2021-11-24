@@ -1,19 +1,37 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { User } from 'src/app/models/User';
+import {Component, Input} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+
+import {User} from 'src/app/models/User';
+import {ActiveteUserService} from "../../services/activete-user.service";
 
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
+  template:`<p>
+    {{user |stringType}}
+    <button (click)="navToDetails()" *ngIf="activeUser !== user.id">details</button>
+  </p>`
 })
-export class UserComponent implements OnInit {
+export class UserComponent {
 
   @Input()
   user: User;
+  path: number;
+  activeUser: number;
 
-  ngOnInit(): void {
-
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private activeUserService: ActiveteUserService) {
   }
 
+  navToDetails() {
+    this.router.navigate([this.user.id],
+      {relativeTo: this.activatedRoute, state: this.user});
+
+    this.activeUserService.setActiveUser(this.user.id)
+
+    this.activeUserService.getActiveUser().subscribe(value => this.activeUser = value)
+  }
 }

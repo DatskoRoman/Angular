@@ -5,6 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { CommentsComponent } from './components/comments/comments.component';
 import { PostInfoComponent } from './components/post-info/post-info.component';
 import { PostComponent } from './components/post/post.component';
 import { PostsComponent } from './components/posts/posts.component';
@@ -12,20 +14,24 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UserComponent } from './components/user/user.component';
 import { UsersFormComponent } from './components/users-form/users-form.component';
 import { UsersComponent } from './components/users/users.component';
+import { StringTypePipe } from './pipes/string-type.pipe';
 import { PostResolveService } from './services/post-resolve.service';
 import { UserResolveService } from './services/user-resolve.service';
 
-// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     UserComponent,
     UserInfoComponent,
+    UsersFormComponent,
     PostComponent,
     PostsComponent,
     PostInfoComponent,
-    UsersFormComponent
+    CommentComponent,
+    CommentsComponent,
+    StringTypePipe
+    
   ],
   imports: [
     BrowserModule,
@@ -48,6 +54,7 @@ import { UserResolveService } from './services/user-resolve.service';
             resolve: {data: PostResolveService}
           },
         ]},
+      { path: 'comments', component: CommentsComponent },
       { path: 'users-select', component: UsersFormComponent }
     ]),
     ReactiveFormsModule
