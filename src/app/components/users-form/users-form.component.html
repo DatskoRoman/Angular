@@ -1,8 +1,0 @@
-<form [formGroup]="myForm" (ngSubmit)="showDetails()">
-  <select formControlName="userId">
-    <option *ngFor="let user of users" [value]="user.id">
-      {{user.name}}
-    </option>
-  </select>
-  <button>submit</button>
-</form>
